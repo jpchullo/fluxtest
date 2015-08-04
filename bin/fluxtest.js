@@ -177,7 +177,7 @@ function downloadZip(zipUrl)
       spinner.stop(true);
       var len = parseInt(res.headers['content-length'], 10);
       console.log("length ", len);
-      if(len>1000){
+      if(!isNaN(len) && len>1000){
         bar = new ProgressBar('  downloading flux [:bar] :percent :etas', {
           complete: '=',
           incomplete: ' ',
