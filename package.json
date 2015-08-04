@@ -1,6 +1,6 @@
 {
   "name": "fluxtest",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "demo for flux develop in progress",
   "main": "index.js",
   "scripts": {
