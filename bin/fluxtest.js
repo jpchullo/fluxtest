@@ -23,6 +23,7 @@ var spinner       = new Spinner('processing.. %s');
 var root    = path.resolve(".");
 var fluxconfig = root + "/.flux";
 var params  = ['module','action','controller']; // seteamos parametros aceptados
+var bar = null;
 var fn = {
   validNameCreate: function(value){
       if(value.length<1)
@@ -149,7 +150,6 @@ function downloadZip(zipUrl)
 {
 	var _this = this;
 	var zipFile = generateTemp() + '.zip';
-  var bar = null;
   var ws = fs.createWriteStream(zipFile);
       ws.on('close', function()
       {
@@ -192,8 +192,10 @@ function downloadZip(zipUrl)
     })
     .on('data', function(chunk)
     {
-      bar.tick(chunk.length);
-      ws.write(chunk);
+      if(bar.tick){
+        bar.tick(chunk.length);
+        ws.write(chunk);
+      }
     })
     .on('end', function(){
       ws.end();
